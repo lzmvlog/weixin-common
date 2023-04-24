@@ -1,20 +1,27 @@
-spring:
-  redis:
-    database: 0
-    host: 127.0.0.1
-    port: 6379
-    # ??
-    password:
-    # ??????????
-    timeout: 6000ms
-    jedis:
-      pool:
-        max-active: 1000  # ????????????????????
-        max-wait: -1ms      # ???????????????????????
-        max-idle: 10      # ???????????
-        min-idle: 5       # ???????????
+server:
+  port: 9300
+
+#spring:
+#  redis:
+#    database: 0
+#    host: 127.0.0.1
+#    port: 6379
+#    password:
+#    timeout: 6000ms
+#    jedis:
+#      pool:
+#        max-active: 1000
+#        max-wait: -1ms
+#        max-idle: 10
+#        min-idle: 5
 
 common:
-  appid: wxaa2043b097c39ba4
-  secret: b40c1e54c1139bae31a09a97c18e55f3
-  url: https://api.weixin.qq.com/cgi-bin/
+  appid: xx
+  secret: xx
+  url: https://api.weixin.qq.com/
+  redirectUri: http://wx.xx.com/api/callback
+
+## 日志
+logging:
+  file:
+    path: /var/log/weixin/weixin-common

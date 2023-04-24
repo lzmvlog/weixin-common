@@ -5,4 +5,6 @@ package top.lzmvlog.weixincommon.redis;
  * @since 2023-04-18
  */
 public class RedisKeys {
+
+    public static final String WEBACCESSTOKEN = "WEB_ACCESSTOKEN";
 }
