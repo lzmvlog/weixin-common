@@ -1,5 +1,7 @@
 package top.lzmvlog.weixincommon.domain.web;
 
+import com.alibaba.fastjson.JSON;
+
 /**
  * @author 是小张啊 zhang1591313226@163.com
  * @since 2023-04-24
@@ -108,4 +110,10 @@ public class WebUserInfo {
     public void setUnionid(String unionid) {
         this.unionid = unionid;
     }
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
+    }
+
 }

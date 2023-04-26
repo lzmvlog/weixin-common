@@ -1,5 +1,6 @@
 package top.lzmvlog.weixincommon.domain.web;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
@@ -47,5 +48,10 @@ public class RequestUserInfo {
 
     public void setLang(String lang) {
         this.lang = lang;
+    }
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
     }
 }

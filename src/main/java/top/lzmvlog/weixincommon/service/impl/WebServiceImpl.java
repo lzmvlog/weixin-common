@@ -56,11 +56,6 @@ public class WebServiceImpl implements WebService {
      * @return
      */
     public WebAuthInfo getAccessToken(String code) {
-//        ValueOperations valueOperations = redisTemplate.opsForValue();
-//        String token = String.valueOf(valueOperations.get(RedisKeys.WEBACCESSTOKEN));
-//        if (StringUtils.isNotEmpty(token)) {
-//            return JSONObject.parseObject(token, WebAuthInfo.class);
-//        }
         logger.info("微信公总号code：" + code);
         WebAccessToken webAccessToken = new WebAccessToken();
         webAccessToken.setAppId(appid);
@@ -70,8 +65,6 @@ public class WebServiceImpl implements WebService {
         String requestHandlerUrl = RequestHandler.getUrl(url + "/sns/oauth2/access_token", map);
         String responseBody = restTemplate.getForObject(requestHandlerUrl, String.class);
         WebAuthInfo webAuthInfo = JSON.parseObject(responseBody, WebAuthInfo.class);
-//        Long timeout = Long.valueOf(webAuthInfo.getExpiresIn());
-//        valueOperations.set(RedisKeys.WEBACCESSTOKEN, webAuthInfo, timeout, TimeUnit.SECONDS);
         return webAuthInfo;
     }
 
@@ -141,10 +134,9 @@ public class WebServiceImpl implements WebService {
         requestUserInfo.setAccessToken(webAuthInfo.getAccessToken());
         requestUserInfo.setOpenid(webAuthInfo.getOpenid());
         Map<String, Object> map = new HashMap<>(JSON.parseObject(requestUserInfo.toString()));
-        String responseBody = RequestHandler.getUrl(url + "/sns/userinfo", map);
-//        if (StringUtils.isNotEmpty(responseBody)) {
-//
-//        }
+        String requestHandlerUrl = RequestHandler.getUrl(url + "/sns/userinfo", map);
+        String responseBody = restTemplate.getForObject(requestHandlerUrl, String.class);
+        logger.info("responseBody：" + responseBody);
         WebUserInfo webUserInfo = JSON.parseObject(responseBody, WebUserInfo.class);
         logger.info("web_user_info：" + webUserInfo.toString());
         return webUserInfo;
